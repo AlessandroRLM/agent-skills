@@ -90,6 +90,8 @@ Reference these rules when:
 - `recordsets-domain-operators` — `|` and `&` are prefix operators applying to the next two conditions
 - `recordsets-sudo-comment` — Always add a comment explaining why `sudo()` is used
 - `recordsets-raw-sql-params` — Never format SQL strings; always use `%s` parameterized queries
+- `recordsets-no-commit` — Never call `cr.commit()` in business code; the framework owns the transaction
+- `recordsets-savepoint` — Use `cr.savepoint()` for isolated rollback; `invalidate_all()` after raw SQL writes
 
 ### 6. Actions (MEDIUM)
 
@@ -114,6 +116,9 @@ Reference these rules when:
 - `testing-constrains-coverage` — Every `@api.constrains` method must have a test that triggers it
 - `testing-wizard-pattern` — Test wizards by creating them with context, then calling the action method
 - `testing-tour-js` — UI tours must be registered in the `web_tour.tours` registry and tested via `HttpCase`
+- `testing-bugfix-first` — A bug fix ships with a test that fails without the fix
+- `testing-no-flaky` — Build data in-test, fix dates (`freezegun`), mock external services, test as least-privileged user
+- `testing-no-stale-env` — Never cache records in class attrs across subtests; re-bind with `with_env()`
 
 ### 9. Mixins (LOW)
 
