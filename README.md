@@ -47,4 +47,6 @@ skills/
 
 ## License
 
-Apache-2.0
+The skills in this repository are licensed under the [Apache License 2.0](LICENSE).
+
+Some skills reference third-party works (books, standards, vendor documentation). Their rules are written in our own words; short quotations keep their attribution. Quoted material belongs to its copyright holders and is not covered by this license. Each skill lists its sources in `references/sources.md`.
