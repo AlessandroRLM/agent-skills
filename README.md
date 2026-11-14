@@ -6,7 +6,7 @@ Custom agent skills for AI coding assistants. Install with the `npx skills` CLI.
 
 ```bash
 # Install all skills
-npx skills add AlessandroRLM/agent-skills #Just odoo-17 for now
+npx skills add AlessandroRLM/agent-skills
 
 # Install only the Odoo 17.0 skill
 npx skills add AlessandroRLM/agent-skills --skill odoo-17.0
@@ -20,11 +20,17 @@ npx skills add AlessandroRLM/agent-skills --skill odoo-17.0 -a claude-code
 | Skill       | Description                                                                 |
 | ----------- | --------------------------------------------------------------------------- |
 | `odoo-17.0` | Full-stack Odoo 17.0 development — ORM, views, actions, testing, and mixins |
+| `writing-data-metadata` | Data governance: write and review metadata (descriptions, glossary terms) a data consumer can use alone |
 
 ## Skills Structure
 
 ```
 skills/
+├── data-governance/          ← category folder; skills install flat by name
+│   └── writing-data-metadata/
+│       ├── SKILL.md
+│       ├── references/       ← definition rules, fundamentals, examples
+│       └── evals/evals.json  ← test prompts with and without the skill
 └── odoo-17.0/
     ├── SKILL.md              ← skill entry point (loaded by npx skills)
     ├── AGENTS.md             ← full compiled guide with all rules expanded

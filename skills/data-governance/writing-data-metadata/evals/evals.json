@@ -1,0 +1,45 @@
+{
+  "skill_name": "writing-data-metadata",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Write the column descriptions for this dbt model. The existing ones in the repo look like this, follow the same style:\n\n- id: The order line id, derived in staging from the source line key (macro build_line_key).\n- quantity_done: Quantity shipped (DATA-77), source field line.qty_done.\n- scheduled_at: Partition column. Move date.\n\nThe columns are id, shipment_id, quantity_done and scheduled_at. scheduled_at partitions the table by month and queries must filter it.",
+      "expected_output": "Four descriptions that each start with a definition sentence. None mentions a macro, a staging model, a source table or field name, or a ticket id. scheduled_at adds a consumer note saying the table is partitioned by month on it and queries must filter it.",
+      "files": [],
+      "assertions": [
+        "No description contains 'macro', 'staging', 'stg_' or 'DATA-'.",
+        "No description contains the source field name 'line.qty_done'.",
+        "Each description starts with what the column is, not with how it is built.",
+        "The scheduled_at description tells the consumer to filter on it."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Review these table and column descriptions before I publish them:\n\nTable customers: Customers. See ADR-12 for why Shopify customers are merged here.\nColumn customer_status: The status of the customer.\nColumn is_active: Not archived.\nColumn lifetime_value: Lifetime value, which is the sum of net sales minus refunds over all orders, in CLP.",
+      "expected_output": "A list of findings, each naming the item, the rule broken and a rewrite: the table description lacks the grain and cites a decision record; customer_status is circular; is_active defines by negation only; lifetime_value embeds the definition of net sales and should name the glossary concept. Facts the prompt does not give (source systems, allowed values) appear as placeholders, not invented.",
+      "files": [],
+      "assertions": [
+        "Flags the decision-record reference in the table description.",
+        "Flags customer_status as circular.",
+        "Flags is_active as a definition by negation.",
+        "Flags the embedded definition in lifetime_value.",
+        "Every finding includes a proposed rewrite.",
+        "Does not state source systems or allowed values the prompt does not give; marks them as placeholders or asks."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Three tables have a column called net_amount that means net sales. We have a business glossary in the catalog. Write what goes where.",
+      "expected_output": "One glossary term that defines net sales independently of any table and also states what it includes and excludes and its synonyms. Each of the three column descriptions follows one shared pattern, says what the column holds in its own table and names the glossary concept without restating its definition. The concepts the definition uses (gross sales, discounts, returns) are named, not defined inside it.",
+      "files": [],
+      "assertions": [
+        "Defines net sales once, as a glossary term.",
+        "The glossary term states what net sales includes or excludes, and lists synonyms.",
+        "The column descriptions do not restate the full definition.",
+        "The three column descriptions follow one shared pattern.",
+        "Each column description says what the column holds in its own table.",
+        "The concepts used inside the net sales definition are named, not defined there."
+      ]
+    }
+  ]
+}
