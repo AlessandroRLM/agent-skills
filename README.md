@@ -21,6 +21,7 @@ npx skills add AlessandroRLM/agent-skills --skill odoo-17.0 -a claude-code
 | ----------- | --------------------------------------------------------------------------- |
 | `odoo-17.0` | Full-stack Odoo 17.0 development — ORM, views, actions, testing, and mixins |
 | `writing-data-metadata` | Data governance: write and review metadata (descriptions, glossary terms) a data consumer can use alone |
+| `writing-technical-docs` | Technical writing: the voice of docs people read (README, CONTRIBUTING, runbooks, wiki pages), in plain, reasoned prose |
 
 ## Skills Structure
 
@@ -31,6 +32,10 @@ skills/
 │       ├── SKILL.md
 │       ├── references/       ← definition rules, fundamentals, examples
 │       └── evals/evals.json  ← test prompts with and without the skill
+├── technical-writing/
+│   └── writing-technical-docs/
+│       ├── SKILL.md
+│       └── references/       ← before and after examples, sources
 └── odoo-17.0/
     ├── SKILL.md              ← skill entry point (loaded by npx skills)
     ├── AGENTS.md             ← full compiled guide with all rules expanded
